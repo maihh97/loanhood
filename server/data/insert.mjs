@@ -3,7 +3,7 @@ import * as products from "./products.json" assert { type: "json" };
 
 console.log(JSON.parse(products))
 // Replace the uri string with your MongoDB deployment's connection string.
-// const uri = "mongodb+srv://mongodbuser:mongo24@items.0ubczc8.mongodb.net/?retryWrites=true&w=majority"
+// const uri = process.env.ATLAS_URI || "";
 
 // const client = new MongoClient(uri);
 
