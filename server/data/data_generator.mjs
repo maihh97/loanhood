@@ -151,7 +151,7 @@ function getRandom(arr, n) {
     return result;
 }
 
-const uri = "mongodb+srv://mongodbuser:mongo24@items.0ubczc8.mongodb.net/?retryWrites=true&w=majority"
+const uri = process.env.ATLAS_URI || "";
 
 const client = new MongoClient(uri);
 
