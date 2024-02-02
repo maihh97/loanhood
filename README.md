@@ -4,7 +4,10 @@
 
 1. [Introduction](#introduction)
 2. [Data model](#data-model)
-3. [Steps to run](#steps-to-run)
+3. [Project structure](#project-structure)
+4. [Steps to run](#steps-to-run)
+5. [Technical debts](#technical-debts)
+6. [References](#references)
 
 ## Introduction
 
@@ -18,7 +21,52 @@ Some dummy data was generated (using `faker` library) and inserted to MongoDB Da
 
 ## Data model
 
+Since MongoDB is a No-SQL database with the [flexible schema model](https://www.mongodb.com/docs/manual/data-modeling/schema-design-process/), I did not define a schema for the database.
+
+If required, MongoDB offers schema validation or instead of using MongoDB client we can use `mongoose` library, that is a Node.js-based Object Data Modeling (ODM) library for MongoDB to define the data models. 
+
+For this use case, I created a database called `loanhood` with 2 collections `users` and `items`.
+
+- For the `user` collection the following fields and data types are added:
+
+    - first_name: String
+    - last_name: String
+    - user_name: String
+    - gender: String
+    - email: String
+    - phone_number: String
+    - address: String
+    - avatar_url: String
+    - favourites: Array of items ids
+
+- For the `items` collection, the following fields and data types are added:
+    - product_name: String
+    - size: Integer
+    - description: String
+    - brand: String
+    - rental_price: Integer
+    - retail_price: Integer
+    - image: Base64 String 
+    - owner_id: String
+
 ## Project structure
+
+    .
+    ├── public
+    ├── server          #Express server 
+    │   ├── data        # Code to generate dummy data and insert the data to MongoDB database, some json examples
+    │   ├── db          # MongoDB connection
+    │   └── routes      # Function to handle url path
+    │   └── index.mjs   # Entry point
+    │   └── ...
+    └── src             # React front-end
+    │   ├── assets      # Images to load to the database
+    │   ├── components  # Components used in the page such as navigation bar, item card and drop down filter
+    │   └── pages       # Favourite page
+    │   └── App.js      # Entry point and where Router is defined
+    │   └── styles.css  # CSS file
+    │   └── ...
+
 
 ## Steps to run
 
@@ -33,7 +81,7 @@ npm install
 In the project directory, you can run:
 ### Steps 
 
-1. Start the server
+#### 1. Start the server
 
 - Open your terminal, use cd command to move to `server` directory 
     ```
@@ -56,7 +104,7 @@ In the project directory, you can run:
     Please contact me if you have any issues connecting to MongoDB and I may need to add your IP address due to security setting of the cluster.
 
 
-2. Start the client (React) 
+#### 2.Start the client (React) 
 
 - Open your terminal, use cd command to move to `src` directory 
     ```
@@ -68,8 +116,11 @@ In the project directory, you can run:
     ```
     If successful, the browser will automatically launch and you can access it via http://localhost:3000.
 
-## References
+## Technical debts
+- API testing
+- DB design according to best practices 
 
+## References
 
 - [MongoDB Documentation](https://github.com/mongodb-developer/mongodb-express-rest-api-example/tree/main/server)
 - [MaterialUI](https://mui.com/material-ui/getting-started/)
