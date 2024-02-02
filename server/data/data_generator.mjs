@@ -196,7 +196,7 @@ async function run() {
     }};
 
     const filter = {
-        _id: new ObjectId("65bae495a09dc7347b48c753")
+        _id: new ObjectId("65bae495a09dc7347b48c752")
     }
 
     const result = await items.updateMany(filter, updateDoc);
